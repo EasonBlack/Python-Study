@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link rel='stylesheet' href= "{{ url_for('static',filename='styles/main.css') | autoversion }}"/>
+</head>
+<body>
+	<div class='container' id='app'>
+		<div class='row no-gutters'>
+            <div class="input-group">
+                <input type="text" class="form-control" v-model='path'>
+                <span class="input-group-addon" id="btnGroupAddon" @click='getInfo'>Confirm</span>
+            </div>	
+		</div>
+		<div class="jumbotron" >
+			<ul>
+				<li v-for='item in items'>
+					<span  v-for='s in item.level'>&nbsp;&nbsp;</span>[[item.name]]
+				</li>
+			</ul>
+        </div>
+	</div>
+</body>
+<script type="text/javascript" src= "{{ url_for('static',filename='js/vue2.3.2.js') }}"></script>
+<script type="text/javascript" src= "{{ url_for('static',filename='js/vue-resource.min.1.0.3.js') }}"></script>
+<script>
+	var app = new Vue({
+		delimiters: ['[[', ']]'],
+		el: '#app',
+		data: {
+			message: 'aaaaa',
+			path:	'D:\\document',
+			items: []
+		},
+		methods: {
+			getInfo() {
+				this.$http.get(`/info/${this.path}`)
+				.then(res=>{
+					this.items = res.data.data;
+					this.$forceUpdate();
+				})
+			}
+		}
+	})
+</script>
+</html>
