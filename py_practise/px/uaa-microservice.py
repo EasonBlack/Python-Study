@@ -1,6 +1,7 @@
 
 
 from flask import Flask, request ,redirect ,session
+from flask.json import jsonify
 from uuid import uuid4
 import requests
 import requests.auth
@@ -10,11 +11,15 @@ import os
 import json
 
 CLIENT_ID ="login_client_id"
-UAA_URL=  ""
-BASE64ENCODING = ""
+APP_CLIENT_ID="app_client_id"
 port = int(os.getenv("PORT", 5100))
 APP_URL = 'http://localhost:' + str(port)
 REDIRECT_URI = "http://localhost:"+str(port)+"/callback"
+UAA_URL=  ""
+BASE64ENCODING = ""
+APPBASE64ENCODING = "=="
+ASSET_URL = ''
+ASSET_ZONE_ID = ''
 
 app = Flask(__name__)
 # set the secret key.  keep this really secret:
@@ -48,6 +53,34 @@ def securepage():
     else :
       text = '<br> <a href="%s">Authenticate with Predix UAA </a>'
       return 'Token not found, You are not logged in to UAA '+text % getUAAAuthorizationUrl()
+
+@app.route('/testapi')
+def testapi():
+  post_data = {
+		'grant_type': 'client_credentials',
+		'client_id': APP_CLIENT_ID
+	}
+  headers =  {
+		'Authorization': 'Basic ' + APPBASE64ENCODING
+	}
+ 
+  if 'client_token' in session:
+    print 'already has client_token'
+  else: 
+    response = requests.post(UAA_URL + "/oauth/token",
+                             headers=headers,
+                             data=post_data)
+    client_token_json = response.json()
+    session['client_token'] = client_token_json['access_token']
+    print 'get client_token'
+  #print session['client_token']
+  asset_headers =  {
+		'Predix-Zone-Id': ASSET_ZONE_ID,
+    'Authorization' : 'Bearer ' + session['client_token']
+	}
+  r = requests.get(ASSET_URL, headers=asset_headers)
+  print r.json()
+  return jsonify(r.json())
 
 @app.route('/callback')
 def UAAcallback():
