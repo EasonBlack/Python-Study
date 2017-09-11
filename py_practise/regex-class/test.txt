@@ -1,0 +1,7 @@
+<div class='d1'>
+  <span class='group work'>
+  </span>
+  <div class='ipt__wrapper d1'>
+    <input class='ipt__name' />
+  </div>
+</div>
