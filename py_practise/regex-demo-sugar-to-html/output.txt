@@ -1,0 +1,12 @@
+<div class="container d-flex box__3wrapper">
+    <div class="row">
+      <div class="col-2">
+        <title class="box">
+        </title>
+        <description class="box">
+        </description>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+</div>

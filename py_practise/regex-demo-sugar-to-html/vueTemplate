@@ -1,0 +1,14 @@
+<template>
+  <div></div>
+</template>
+<script>
+  export default {
+    props: [ 
+      {% for prop in props -%}
+      "{{prop}}",
+      {%- endfor %}
+    ]
+  }
+</script>
+<style scoped>
+</style>
