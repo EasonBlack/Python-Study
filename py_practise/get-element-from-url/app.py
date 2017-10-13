@@ -42,18 +42,27 @@ cssList = []
 for c in classList: 
   cssRegex = re.compile(r"\n.*?\.%s.*{[\s\S]*?}"%c)
   classRes = cssRegex.findall(cssFileAll)
-  
+  # print classRes
   for cr in classRes:
+    # print cr
     _match = 0
     for l in doneClassList:
+      # print l, cr
       if re.search(l, cr):
         _match = 1
         break
     if _match == 0:
-      cssList.extend(cr)      
+      cssList.append(cr)      
       
-  doneClassList.extend(c)
+  doneClassList.append(c)
 
 
-print cssList.__len__()
+# print cssList
+
+
+output = open('output.css', 'w')
+for line in cssList: 
+  # print line
+  output.write(line)
+
 
