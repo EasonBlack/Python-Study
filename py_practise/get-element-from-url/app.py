@@ -1,16 +1,23 @@
+import ConfigParser
 import urllib2
 import urlparse
 from bs4 import BeautifulSoup
 import re
-import os 
+import os
 
-url ='https://frontendfoc.us/'
-response = urllib2.urlopen(url)
+cf = ConfigParser.ConfigParser()  
+cf.read('app.conf')
+urlSite = cf.get("website", "targetUrl")
+urlTag = cf.get("website", "targetTag")
+urlClass = cf.get("website", "targetClass")
+print urlSite, urlTag, urlClass
+
+response = urllib2.urlopen(urlSite)
 html = response.read()
 
 # get html by selector
 soup = BeautifulSoup(html)
-iphoneHtml = soup.find("div" , { "class": 'sideground'})
+iphoneHtml = soup.find(urlTag , { "class": urlClass})
 outputHtml = open('output.html', 'w')
 outputTemplate = '''
 <!DOCTYPE html>
@@ -46,7 +53,8 @@ cssFileRegex = re.compile(r"href=[\'\"](.*?\.css)[\'\"]")
 cssFileRes = cssFileRegex.findall(str(html))
 cssFileAll = ''
 for cssFile in cssFileRes: 
-  _url = urlparse.urljoin(url, cssFile)
+  _url = urlparse.urljoin(urlSite, cssFile)
+  print _url
   cssFileContent = urllib2.urlopen(_url)
   cssFileContentHtml = cssFileContent.read()
   cssFileAll += cssFileContentHtml

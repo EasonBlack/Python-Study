@@ -1,3 +1,6 @@
+# coding=utf-8
+
+
 import os 
 import re
 
@@ -18,6 +21,7 @@ array1 = ['marvel-device', 'top-bar']
 arrayregex1 = "|".join(array1).replace('-', '\-')
 print arrayregex1
 
+# 阿斯蒂芬
 # regex1 = re.compile(r"\.(?:marvel\-device|top\-bar).*{[\s\S]*?}")
 regex1 = re.compile(r"\.(?:%s).*{[\s\S]*?}"%arrayregex1)
 result1 = regex1.findall(string1)
