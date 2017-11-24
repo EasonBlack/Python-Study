@@ -4,6 +4,7 @@ from flask import Flask, render_template, send_file, request
 from flask.json import jsonify
 from flask_cors import CORS, cross_origin
 
+import uuid
 import urllib
 import urllib2
 import urlparse
@@ -19,23 +20,41 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route("/")
 @cross_origin()
 def index():
-    # output = open('files/aaa.txt',"wb")
-    # output.write('asdafs')
-    # output.close()
 
     reqUrl = request.args.get('url')
     print reqUrl
-    response = urllib2.urlopen(reqUrl)
+    req = urllib2.Request(reqUrl, headers={'User-Agent' : "Mozilla/5.0"}) 
+    response = urllib2.urlopen(req)
     html = response.read()
     soup = BeautifulSoup(html)
-    fileRegex = re.compile(r"(\w*\.\w*)$")
+   
+    # htmlChecker = open('files/html.txt',"wb")
+    # htmlChecker.write(html)
+    # htmlChecker.close()
+
     imgs = soup.select('img')
+    print len(imgs)
+    
+    fileRegex = re.compile(r"(\w*\.\w*)$")
+    fileList = []
     for img in imgs:
         _content = img.get('src')   
         _url = urlparse.urljoin(reqUrl, _content)
-        _filename = fileRegex.findall(str(_url))[0]
+        fileList.append(_url)
+    print fileList
+    for img in imgs:
+        _content = img.get('src')   
+        _url = urlparse.urljoin(reqUrl, _content)
+        _fileRes = fileRegex.findall(str(_url))
+        _filename = ''
+        if len(_fileRes):
+            _filename = _fileRes[0]
+        else:
+           _filename = str(uuid.uuid4()) + '.png'
+
         print _url, _filename
-        resource = urllib2.urlopen(_url)
+        _urlReq = urllib2.Request(_url, headers={'User-Agent' : "Mozilla/5.0"}) 
+        resource = urllib2.urlopen(_urlReq)
         output = open('files/' + _filename,"wb")
         output.write(resource.read())
         output.close()
