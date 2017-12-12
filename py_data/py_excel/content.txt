@@ -1,1 +1,16 @@
 {
+	'Name ':'PV Farm 2', 
+	'Plant Name':'PV Plant', 
+	'Capacity (MW)':'10', 
+	'Life Time (years)':'25', 
+	'Ground Reflectance (%)':'0.2', 
+	'Tracking System':'Horizontal/Vertical/Two Axis/No Tracking', 
+	'Temperature Factor (%/F)':'-0.045', 
+	'Nominal Operating Cell Temperature(F)':'115', 
+	'Lattitude':'86.7 N', 
+	'Longtitude':'34.87 W', 
+	'':'', 
+	'Dynamic':'', 
+	'Status':'Online/Offline', 
+	'Current Generation (MW)':'6.2', 
+}
