@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style>
+		.container {
+			width:100vw;
+			height:100vh;
+			display:flex;
+			flex-wrap: wrap;
+			margin:0;
+			padding:0;
+			padding-top:30px;
+		}	
+		.flex1 {
+			
+			width:200px;
+			height:200px;
+			position:relative;
+			padding:5px;
+		}
+		img {
+			width:100%;
+			height:100%;
+		}
+		.popup {
+			position:absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%,-50%);
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<input id='folderTxt'/><button id='btnFolder'>Select</button>
+	</div>
+	<div class='container'>
+		
+		{% for image in image_list %}
+			<div class='flex1'>
+				<img src='data:image/png;base64,{{image}}'/>
+			</div>
+		{% endfor %}
+		<div class='popup'>
+			
+		</div>
+	
+	</div>
+</body>
+<script src="{{ url_for('static',filename='axios.js') }}"></script>
+<script>
+	let con = document.querySelector(".popup");
+	let btnSelects = document.querySelectorAll('.flex1');
+	let btnFolder = document.querySelector("#btnFolder");
+	btnSelects.forEach(b=>{
+		b.addEventListener('click',(e)=>{
+			let im = new Image()
+			im.src=e.target.src;
+			con.appendChild(im);
+		})
+	})
+	con.addEventListener('click', (e)=>{
+		con.innerHTML = '';
+	})
+	btnFolder.addEventListener('click',(e)=>{
+		let folder = document.querySelector('#folderTxt').value;
+		
+		axios.get('folder?path=' + folder);
+	})
+	
+</script>
+</html>
