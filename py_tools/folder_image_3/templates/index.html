@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
 	<style>
+		body {
+			position:relative;
+		}
+
 		.container {
 			width:100vw;
 			height:100vh;
@@ -11,6 +15,7 @@
 			padding:0;
 			padding-top:30px;
 		}	
+
 		.flex1 {
 			
 			width:200px;
@@ -35,20 +40,13 @@
 		<input id='folderTxt'/><button id='btnFolder'>Select</button>
 	</div>
 	<div class='container'>
-		
-		{% for image in image_list %}
-			<div class='flex1'>
-				<img src='data:image/png;base64, {{image}}'/>
-			</div>
-		{% endfor %}
-		<div class='popup'>
-			
-		</div>
-	
+	</div>
+	<div class='popup'>			
 	</div>
 </body>
 <script src="{{ url_for('static',filename='axios.js') }}"></script>
 <script>
+	let $container = document.querySelector(".container");
 	let con = document.querySelector(".popup");
 	let btnSelects = document.querySelectorAll('.flex1');
 	let btnFolder = document.querySelector("#btnFolder");
@@ -64,8 +62,23 @@
 	})
 	btnFolder.addEventListener('click',(e)=>{
 		let folder = document.querySelector('#folderTxt').value;
-		
-		axios.get('folder?path=' + folder);
+		axios.get('all?path=' + folder)
+		.then(res=>{
+			$container.innerHTML = '';
+			console.log(res.data.length);
+			res.data.forEach(e=>{
+				let im = new Image()
+				im.src=e;
+				im.className += " flex1";
+				im.addEventListener('click',(e)=>{
+					let bigImg = new Image()
+					bigImg.src=e.target.src;
+					con.appendChild(bigImg);
+				})
+				$container.appendChild(im);
+			})
+			
+		})
 	})
 	
 </script>
