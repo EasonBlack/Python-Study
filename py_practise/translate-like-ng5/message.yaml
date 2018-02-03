@@ -1,2 +1,4 @@
-Hello_World: 'xxxxxx'
-book_list: 'bbbbb'
+./components/app.vue:
+  Hello_World: 'aaaaa'
+./components\book/book.vue:
+  book_list: 'bbbbb'

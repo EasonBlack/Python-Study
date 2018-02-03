@@ -1,3 +1,6 @@
 <template>
-    <div i18n>book list</div>
+    <div>
+        <div i18n  class='row'>book list</div>
+        <div>book list</div>
+    </div>
 </template>
