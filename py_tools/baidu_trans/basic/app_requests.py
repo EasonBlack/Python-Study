@@ -27,7 +27,8 @@ baseUrl = 'https://api.fanyi.baidu.com'
 myurl = baseUrl + myurl+'?appid='+appid+'&q='+urllib.parse.quote(q)+'&from='+fromLang+'&to='+toLang+'&salt='+str(salt)+'&sign='+sign
 
 print(myurl)
-r = requests.get(myurl)
+r = requests.get(myurl, headers={'Connection':'close'})
+print(r.headers)
 print(r.json())
 print(r.json()["trans_result"][0]['dst'])
 
