@@ -28,20 +28,20 @@ sign = m1.hexdigest()
 myurl = myurl+'?appid='+appid+'&q='+urllib.parse.quote(q)+'&from='+fromLang+'&to='+toLang+'&salt='+str(salt)+'&sign='+sign
 print(myurl)
 
+# a = b'{"from":"en","to":"zh","trans_result":[{"src":"hello","dst":"\\u4f60\\u597d"}]}'
+# txt = a.decode()
+# _j = json.loads(txt)
+# print(_j)
 try:
 
     httpClient = http.client.HTTPConnection('api.fanyi.baidu.com')
     httpClient.request('GET', myurl)
-
     response = httpClient.getresponse()
- 
-    print(response.read().decode("utf-8"))
-    txt = response.read().decode("utf-8")
-    _j = json.loads(txt)
+    res = response.read()
+    resDe = res.decode()
+    print(resDe)
+    _j = json.loads(resDe)
     print(_j)
-    print(type(txt))  
-    print(type(_j))
-
 
 finally:
     if httpClient:
