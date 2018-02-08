@@ -1,0 +1,4 @@
+!!python/unicode './components/app.vue':
+  !!python/unicode 'Hello_World': "\u4F60\u597D\u4E16\u754C"
+!!python/unicode './components\book/book.vue':
+  !!python/unicode 'book_list': "\u672C\u4E66\u76EE\u5F55"

@@ -11,3 +11,6 @@ arr1.append(a2)
 arr1.append(a1.decode("utf-8"))
 for _arr1 in arr1:
   print _arr1 
+
+f = open("demo.yaml", "w")
+f.write("阿什顿发的发斯蒂芬")
