@@ -37,7 +37,7 @@ for (d,o) in x.items():
        
 
 f = open('./translate.yaml', "w")  
-yaml.dump(x, f, default_flow_style=False)  
+yaml.dump(x, f, default_flow_style=False, allow_unicode=True)  
 f.close()  
   
 
