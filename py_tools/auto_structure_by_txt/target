@@ -1,15 +1,13 @@
-aa
-    ee
-        main.js
-    ff
-        index.html
-        gg
-            hh
-bb
-    cc1
-        asd.vue
-    cc
-        sdf.css
-        pp
-        asdf.vue
-    dd
+views
+    list
+        card.js[react-component-const]
+        index.html[html]
+    chart
+        line.js
+        pie.js
+        header
+            index.js
+            select.js
+        footer
+            index.js
+            legend.js

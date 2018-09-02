@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            position:relative;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+
+        }
+        .box {
+            background-color: steelblue;
+            position:absolute;
+            margin: auto;
+            width:100px;
+            height:100px;
+            top:0;
+            left:0;
+            bottom:0;
+            right:0;
+        }
+    </style>
+</head>
+<body>
+	<div class='box'></div>
+</body>
+<script>
+
+</script>
+</html>
