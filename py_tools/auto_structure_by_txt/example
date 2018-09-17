@@ -1,8 +1,9 @@
 aa
     ee
-        main.js
+        main.js[react-component-class]
+        sub.js[react-component-const]
     ff
-        index.html
+        index.html[html]
         gg
             hh
 bb
