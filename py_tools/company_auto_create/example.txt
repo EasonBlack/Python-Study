@@ -1,0 +1,5 @@
+(t_product_record)
+f_id Long
+f_name String 
+f_create_time Timestamp
+f_price Option[Double]
