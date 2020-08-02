@@ -18,6 +18,13 @@ class {{entityName}}Controller @Inject()(cacheApi: SyncCacheApi, {{entityName2}}
     {{entityName2}}Service.search{{entityName}}(hqId).map(result => dataResult(Json.toJson(result)))
   }
 
+  def find{{entityName}}ById(id: Long) = Action.async {request =>
+    val hqId = request.authToken.body.hqId
+    {{entityName2}}Service.find{{entityName}}ById(hqId, id).map { result =>
+      dataResult(Json.toJson(result))
+    }
+  }
+
   def save{{entityName}} = Action.async(parse.json) { request =>
     request.body.validate[{{entityName}}].fold(
       errors => Future.successful(jsonInvalidResult(request, errors)),

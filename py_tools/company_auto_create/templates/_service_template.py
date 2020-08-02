@@ -4,6 +4,7 @@ service_template =  Template('''
 @ImplementedBy(classOf[{{entityName}}ServiceImpl])
 trait {{entityName}}Service {
   def search{{entityName}}(hqId: Long): Future[Seq[{{entityName}}]] 
+  def find{{entityName}}ById(hqId: Long, id: Long) : Future[{{entityName}}]
   def save{{entityName}}(m: {{entityName}}): Future[Long]
   def update{{entityName}}(m: {{entityName}}): Future[Unit]
 }
@@ -14,10 +15,16 @@ class {{entityName}}ServiceImpl @Inject()(dbConfigProvider: DatabaseConfigProvid
 
   private[this] val _{{tableClassNames}} = Tables.{{tableClassName}}
  
-  override def searc{{entityName}}(hqId: Long) = { 
+  override def search{{entityName}}(hqId: Long) = { 
     val query = _{{tableClassNames}}.filter(t=>t.hqId === hqId)
-     runDBAction(query.sortBy(_.id.desc).result)
+    runDBAction(query.sortBy(_.id.desc).result)
   }
+
+  override def find{{entityName}}ById(hqId: Long, id: Long) = {
+    val query = _{{tableClassNames}}.filter(t=>t.hqId === hqId && t.id === id)
+    runDBAction(query.result.head)
+  }
+  
 
   override def save{{entityName}}(m: {{entityName}}) = {
     runDBAction((_{{tableClassNames}} returning _{{tableClassNames}}.map(_.id)) += m)

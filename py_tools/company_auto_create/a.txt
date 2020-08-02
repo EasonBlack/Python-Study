@@ -1,5 +1,7 @@
-(t_product_record)
+(t_branch_kds)
 f_id Long
-f_name String 
-f_create_time Timestamp
-f_price Option[Double]
+f_hqid Long
+f_branchid Long
+f_name Option[String]
+f_uuid String
+f_open Boolean

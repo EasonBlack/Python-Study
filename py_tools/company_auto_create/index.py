@@ -1,31 +1,26 @@
 
 import re
+import sys, getopt
 from jinja2 import Template
-from _service_template import *
-from _controller_template import *
 
-entity_template = Template('''
-package entities
-import java.sql.Timestamp
-case class {{entityName}}(
-	{% for (col) in entityParams %} {{col[2]}} : {{col[1]}} {% if loop.last == false %},{% endif %} {% endfor %}
-) extends IdEntity {
-}
+from templates._service_template import *
+from templates._controller_template import *
+from templates._route_template import *
+from templates._redux_action_template import *
+from templates._redux_template import *
+from templates._react_table_col_template import *
+from templates._entity_template import *
+from templates._table_template import *
 
-implicit lazy val  {{entityName2}}Format: Format[{{entityName}}] = Json.format[{{entityName}}]
-''')
 
-table_template = Template('''
-class {{tableClassName}}(tag: Tag) extends IdTable[{{entityName}}](tag, "{{tableName}}", "f_id") {
-{%- for (col) in entityParams %}	def {{col[2]}} = column[{{col[1]}}]("{{col[0]}}")
-{% endfor %}
-	override def * = ({% for (col) in entityParams %} {{col[2]}}{% if loop.last == false %},{% endif %} {% endfor %}) <>
-	({{entityName}}.tupled, {{entityName}}.unapply)
-}
-lazy val {{tableClassNames}} = TableQuery[{{tableClassName}}]
+actionType = "scala-file"
+# print('参数列表:', str(sys.argv))
+opts, args = getopt.getopt(sys.argv[1:],"t:")
+for op , value in opts: 
+	if op == "-t":
+		actionType = value
 
-''')
-
+print(actionType)
 
 
 
@@ -41,12 +36,14 @@ for l in r:
 	l =  l.replace("\r", "").replace("\n", "").strip()
 	matchObj = re.match( r'\((.*)\)', l, re.M|re.I)   # 第一行括号表示表明
 	if matchObj:
-		tableName = matchObj.group(1)  
-		namePiece= 	tableName.split("_")[1:]
-		entityName = "".join([ x.capitalize() for x in namePiece ])
-		entityName2 = namePiece[0] + "".join([ x.capitalize() for x in tableName.split("_")[2:] ])
-		tableClassName = entityName + "Table"
-		tableClassNames = namePiece[0] + "".join([ x.capitalize() for x in tableName.split("_")[2:] ]) + "Tables"
+		tableName = matchObj.group(1)  # t_product_record
+		namePiece= 	tableName.split("_")[1:]     # [product,record]
+		routeName = "-".join([x for x in namePiece])  # product-record
+		reduxName = "_".join([x.upper() for x in namePiece])  # PRODUCT_RECORD
+		entityName = "".join([ x.capitalize() for x in namePiece ])  # ProductRecord
+		entityName2 = namePiece[0] + "".join([ x.capitalize() for x in tableName.split("_")[2:] ])  # productRecord
+		tableClassName = entityName + "Table"    # ProductRecordTable
+		tableClassNames = namePiece[0] + "".join([ x.capitalize() for x in tableName.split("_")[2:] ]) + "Tables"  # productRecordTables
 	else:
 		colName = l.split(" ")[0]
 		colType = l.split(" ")[1]
@@ -55,32 +52,41 @@ for l in r:
 			colKey =  colName.split("_")[1] + "".join([ c.capitalize() for (i,c) in enumerate(colName.split("_")[2:])  ])
 		else:
 			colKey =  colName.split("_")[0] + "".join([ c.capitalize() for (i,c) in enumerate(colName.split("_")[1:])  ])
+		colKey =  colKey.replace("id", "Id")  # 一般情况id都是i大写
 		fCols.append((colName,  colType,  colKey))
-print(tableName)
-print(fCols)
-print(entityName)
+
 
 entityResult = entity_template.render(entityName=entityName,entityParams=fCols, entityName2=entityName2 )
 tableResult = table_template.render(entityName=entityName, entityParams=fCols, tableName=tableName, tableClassName=tableClassName, tableClassNames=tableClassNames)
 serviceResult = service_template.render(entityName=entityName, entityParams=fCols, tableName=tableName, tableClassName=tableClassName, tableClassNames=tableClassNames, entityName2=entityName2)
 controllerResult = controller_template.render(entityName=entityName, entityParams=fCols, tableName=tableName, tableClassName=tableClassName, tableClassNames=tableClassNames, entityName2=entityName2)
+routeResult = route_template.render(entityName=entityName, entityParams=fCols, tableName=tableName, tableClassName=tableClassName, tableClassNames=tableClassNames, entityName2=entityName2, routeName=routeName)
+reduxActionResult = redux_action_template.render(entityName=entityName, entityParams=fCols, tableName=tableName, tableClassName=tableClassName, tableClassNames=tableClassNames, entityName2=entityName2, routeName=routeName, reduxName=reduxName)
+reduxResult = redux_template.render(entityName=entityName, entityParams=fCols, tableName=tableName, tableClassName=tableClassName, tableClassNames=tableClassNames, entityName2=entityName2, routeName=routeName, reduxName=reduxName)
+reduxTableColsResult = react_table_col_template.render(entityParams=fCols)
 
 
-print(entityResult)
-print(tableResult)
-print(serviceResult)
-print(controllerResult)
+results = []
+if actionType == "scala-file":
+	results.extend([
+		(entityResult, entityName + '.scala' ), 
+		(tableResult,  'Tables.scala'),
+		(serviceResult, entityName + 'Service.scala'), 
+		(controllerResult, entityName + 'Controller.scala'), 
+		(routeResult,  entityName + '.routes'), 
+	])
+elif actionType == "js-file":
+	results.extend([
+		(reduxActionResult, entityName + '.reduce.js'), 
+		(reduxResult,  entityName + '.action.js'), 
+		(reduxTableColsResult,  "reduct_table_col.js")
+	])
 
 
-entity_file = open("dict/" + entityName + '.scala','w+')
-entity_file.write(entityResult + tableResult )
-entity_file.close()
+for result, filename in results:
+	f =  open("dict/" + filename,'w+')
+	f.write(result)
+	f.close()
 
-service_file = open("dict/" + entityName + 'Service.scala','w+')
-service_file.write(serviceResult)
-service_file.close()
 
-controller_file = open("dict/" + entityName + 'Controller.scala','w+')
-controller_file.write(controllerResult)
-controller_file.close()
 
