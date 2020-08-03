@@ -25,12 +25,14 @@ print(actionType)
 
 
 
+
+
 tableName = ""
 fCols = []
 tableClassName = ""
 
 # 读取txt文件
-fi = open("a.txt", 'r+')
+fi = open("_entity.txt", 'r+')
 r = fi.readlines() 
 for l in r:
 	l =  l.replace("\r", "").replace("\n", "").strip()
@@ -54,6 +56,8 @@ for l in r:
 			colKey =  colName.split("_")[0] + "".join([ c.capitalize() for (i,c) in enumerate(colName.split("_")[1:])  ])
 		colKey =  colKey.replace("id", "Id")  # 一般情况id都是i大写
 		fCols.append((colName,  colType,  colKey))
+
+
 
 
 entityResult = entity_template.render(entityName=entityName,entityParams=fCols, entityName2=entityName2 )

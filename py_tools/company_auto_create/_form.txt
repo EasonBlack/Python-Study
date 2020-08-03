@@ -1,0 +1,6 @@
+-formTitle 预定 -tabTitle 配置
+--panel	预定
+--item	name	input
+--item	timeBegin,timeEnd	dateRange
+--panel	素材
+--item	themeColor	color

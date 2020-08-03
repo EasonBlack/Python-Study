@@ -1,0 +1,5 @@
+
+GET           /api/branch-kds                                              controllers.BranchKdsController.searchBranchKds       
+GET           /api/branch-kds/:id                                          controllers.BranchKdsController.findBranchKdsById(id: Long)   
+POST          /api/branch-kds                                              controllers.BranchKdsController.saveBranchKds       
+PUT           /api/branch-kds                                              controllers.BranchKdsController.updateBranchKds   

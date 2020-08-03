@@ -1,0 +1,7 @@
+(t_branch_kds)
+f_id Long
+f_hqid Long
+f_branchid Long
+f_name Option[String]
+f_uuid String
+f_open Boolean
