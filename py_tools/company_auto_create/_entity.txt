@@ -1,7 +1,4 @@
-(t_branch_kds)
+(t_vip_point_product_levels)
 f_id Long
-f_hqid Long
-f_branchid Long
-f_name Option[String]
-f_uuid String
-f_open Boolean
+f_productid Long
+f_levelid Long

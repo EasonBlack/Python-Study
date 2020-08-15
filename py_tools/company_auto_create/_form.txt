@@ -1,6 +1,14 @@
--formTitle 预定 -tabTitle 配置
---panel	预定
---item	name	input
---item	timeBegin,timeEnd	dateRange
---panel	素材
---item	themeColor	color
+-formTitle 积分规则 -tabTitle 积分配置
+--panel	会员积分
+--item	name	input	积分命名
+--item	unit	input	积分单位
+--item	icon	image	ICON
+--panel	消费积分
+--item	deliveryInclude	switch	手机外送运费是否积分
+--panel	积分有效期
+--item	sceneType	radioBox	全部消费,自定义
+--item	validTime	radioBox	永久有效,设置有效期
+--item	seperate	seperate	seperate
+--panel	积分折现
+--item	commutation	radioBox	不开启,开启积分折现
+--item	commutationPoint	customInput	等,input,抵扣1元

@@ -1,0 +1,58 @@
+[33mcommit 691b6bf56b43c0d1011513a9d5050959b6395b34[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: eason <eason820720@163.com>
+Date:   Mon Aug 3 09:00:55 2020 +0800
+
+    update
+
+ py_tools/company_auto_create/_entity.txt           |  7 [32m++++[m
+ py_tools/company_auto_create/_form.txt             |  6 [32m+++[m
+ py_tools/company_auto_create/dict/BranchKds.routes |  5 [32m+++[m
+ py_tools/company_auto_create/dict/BranchKds.scala  |  9 [32m+++++[m
+ .../dict/BranchKdsController.scala                 | 45 [32m++++++++++++++++++++++[m
+ py_tools/company_auto_create/index.py              |  6 [32m++[m[31m-[m
+ py_tools/company_auto_create/index2.py             | 12 [32m+++++[m[31m-[m
+ 7 files changed, 88 insertions(+), 2 deletions(-)
+
+[33mcommit 4d39b2871a62d98515523a94db167f4cdbafcc17[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: eason <eason820720@163.com>
+Date:   Sun Aug 2 10:47:08 2020 +0800
+
+    update
+
+ .gitignore                                         |   2 [32m+[m
+ py_tools/company_auto_create/a.txt                 |  10 [32m++[m[31m-[m
+ .../company_auto_create/dict/ProductRecord.scala   |  18 [31m----[m
+ .../dict/ProductRecordController.scala             |  38 [31m--------[m
+ .../dict/ProductRecordService.scala                |  29 [31m------[m
+ py_tools/company_auto_create/index.py              | 100 [32m+++++++++++[m[31m----------[m
+ py_tools/company_auto_create/index2.py             |   5 [32m++[m
+ .../{ => templates}/_controller_template.py        |   7 [32m++[m
+ .../templates/_entity_template.py                  |  14 [32m+++[m
+ .../templates/_react_table_col_template.py         |   7 [32m++[m
+ .../templates/_redux_action_template.py            |  30 [32m+++++++[m
+ .../templates/_redux_template.py                   |  35 [32m++++++++[m
+ .../templates/_route_template.py                   |   8 [32m++[m
+ .../{ => templates}/_service_template.py           |  11 [32m++[m[31m-[m
+ .../templates/_table_template.py                   |  14 [32m+++[m
+ 15 files changed, 190 insertions(+), 138 deletions(-)
+
+[33mcommit 072dc8c95d211efd97f6d45d6d3201bb10a52e87[m
+Author: EasonBlack <eason820720@163.com>
+Date:   Sat Jul 25 12:38:08 2020 +0800
+
+    update
+
+ py_data/py_excel/py_panda_excel_target_json.py     |  12 [32m+[m[31m--[m
+ .../company_auto_create/_controller_template.py    |  41 [32m++++++++++[m
+ py_tools/company_auto_create/_service_template.py  |  32 [32m++++++++[m
+ py_tools/company_auto_create/a.txt                 |   5 [32m++[m
+ .../company_auto_create/dict/ProductRecord.scala   |  18 [32m+++++[m
+ .../dict/ProductRecordController.scala             |  38 [32m+++++++++[m
+ .../dict/ProductRecordService.scala                |  29 [32m+++++++[m
+ py_tools/company_auto_create/example.txt           |   5 [32m++[m
+ py_tools/company_auto_create/index.py              |  86 [32m+++++++++++++++++++++[m
+ py_wx/simple/__pycache__/d.cpython-37.pyc          | Bin [31m0[m -> [32m253[m bytes
+ py_wx/simple/d.py                                  |   6 [32m++[m
+ py_wx/simple/d.spec                                |  32 [32m++++++++[m
+ py_wx/simple/dist/d.exe                            | Bin [31m0[m -> [32m11406778[m bytes
+ 13 files changed, 298 insertions(+), 6 deletions(-)

@@ -57,7 +57,7 @@ for l in r:
 		colKey =  colKey.replace("id", "Id")  # 一般情况id都是i大写
 		fCols.append((colName,  colType,  colKey))
 
-
+print(fCols)
 
 
 entityResult = entity_template.render(entityName=entityName,entityParams=fCols, entityName2=entityName2 )
