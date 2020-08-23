@@ -12,8 +12,11 @@ from templates.form_components._react_form_image_template import *
 from templates.form_components._react_form_switch_template import *
 from templates.form_components._react_form_textarea_template import *
 from templates.form_components._react_form_radioBox_template import *
+from templates.form_components._react_form_radioBoxGroup_template import *
 from templates.form_components._react_form_customInput_template import *
 from templates.form_components._react_form_seperate_template import *
+from templates.form_components._react_form_checkBoxGroup_template import *
+from templates.form_components._react_form_table_template import *
 
 formMainParse = argparse.ArgumentParser()
 formMainParse.add_argument("-formTitle")
@@ -87,8 +90,11 @@ reactFromTamplateResult = react_form_template.render(
 	form_switch_template=form_switch_template,
 	form_textarea_template= form_textarea_template,
 	form_radioBox_template = form_radioBox_template,
+	form_radioBoxGroup_template = form_radioBoxGroup_template,
 	form_customInput_template = form_customInput_template,
 	form_seperate_template = form_seperate_template,
+	form_checkBoxGroup_template = form_checkBoxGroup_template,
+	form_table_template = form_table_template,
 	panals = panals
 )
 

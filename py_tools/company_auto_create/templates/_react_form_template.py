@@ -47,8 +47,17 @@ render() {
 						{% if item.type == "radioBox" %}
 							{{ form_radioBox_template.render(title=item.title, props=item.props, titles=item.title.split(","))  }}
 						{% endif %}
+						{% if item.type == "radioBoxGroup" %}
+							{{ form_radioBoxGroup_template.render(title=item.title, props=item.props, titles=item.title.split(","))  }}
+						{% endif %}
+						{% if item.type == "checkBoxGroup" %}
+							{{ form_checkBoxGroup_template.render(title=item.title, props=item.props)  }}
+						{% endif %}
 						{% if item.type == "customInput" %}
 							{{ form_customInput_template.render(title=item.title, props=item.props, titles=item.title.split(","))  }}
+						{% endif %}
+						{% if item.type == "table" %}
+							{{ form_table_template.render(title=item.title, props=item.props, titles=item.title.split(","))  }}
 						{% endif %}
 					{% endfor %}
 					</React.Fragment>

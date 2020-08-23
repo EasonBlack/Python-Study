@@ -19,3 +19,4 @@ f_open Boolean
 --item	newMember	switch	是否仅邀请新会员才有效
 --item	commutation	radioBox	不开启,开启积分折现
 --item	commutationPoint	customInput	等,input,抵扣1元
+--item	coupons	table	卡券,select,couponId,数量,input,amount,发券规则,input,rule

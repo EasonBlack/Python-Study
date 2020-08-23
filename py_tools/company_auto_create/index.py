@@ -50,7 +50,7 @@ for l in r:
 		colName = l.split(" ")[0]
 		colType = l.split(" ")[1]
 		colKey = ""
-		if colName.index("f_") >= 0:
+		if colName.find("f_") >= 0:
 			colKey =  colName.split("_")[1] + "".join([ c.capitalize() for (i,c) in enumerate(colName.split("_")[2:])  ])
 		else:
 			colKey =  colName.split("_")[0] + "".join([ c.capitalize() for (i,c) in enumerate(colName.split("_")[1:])  ])
