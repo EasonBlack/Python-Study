@@ -81,8 +81,8 @@ if actionType == "scala-file":
 	])
 elif actionType == "js-file":
 	results.extend([
-		(reduxActionResult, entityName + '.reduce.js'), 
-		(reduxResult,  entityName + '.action.js'), 
+		(reduxActionResult, entityName + '.action.js'), 
+		(reduxResult,  entityName + '.reduce.js'), 
 		(reduxTableColsResult,  "reduct_table_col.js")
 	])
 

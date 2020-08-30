@@ -13,7 +13,7 @@ trait {{entityName}}Service {
 class {{entityName}}ServiceImpl @Inject()(dbConfigProvider: DatabaseConfigProvider) extends BaseDao(dbConfigProvider)
   with {{entityName}}Service {
 
-  private[this] val _{{tableClassNames}} = Tables.{{tableClassName}}
+  private[this] val _{{tableClassNames}} = Tables.{{tableClassNames}}
  
   override def search{{entityName}}(hqId: Long) = { 
     val query = _{{tableClassNames}}.filter(t=>t.hqId === hqId)

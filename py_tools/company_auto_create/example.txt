@@ -8,15 +8,20 @@ f_uuid String
 f_open Boolean
 
 # _formtxt
--formTitle 预定 -tabTitle 配置
---panel	预定
---item	name	input	姓名
---item	timeBegin,timeEnd	dateRange	时间
---item	description	textarea	描述
---panel	素材
---item	themeColor	color	主题色
---item	backgroundImage	image	选择图片
---item	newMember	switch	是否仅邀请新会员才有效
+-formTitle 积分规则 -tabTitle 积分配置
+--panel	会员积分
+--item	name	input	积分命名
+--item	unit	input	积分单位
+--item	icon	image	ICON
+--panel	消费积分
+--item	deliveryInclude	switch	手机外送运费是否积分
+--panel	积分有效期
+--item	sceneType	radioBox	全部消费,自定义
+--item	validTime	radioBox	永久有效,设置有效期
+--item	seperate	seperate	seperate
+--panel	积分折现
 --item	commutation	radioBox	不开启,开启积分折现
 --item	commutationPoint	customInput	等,input,抵扣1元
+--item	useSceneList	checkBoxGroup	useSceneList
 --item	coupons	table	卡券,select,couponId,数量,input,amount,发券规则,input,rule
+--item	discountRange	radioBoxGroup	整单和单品,整单,单品

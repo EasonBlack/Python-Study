@@ -48,7 +48,6 @@ for index,l in enumerate(r):
 		if formPanelArg.panel: 
 			print(formPanelArg.panel.replace("\n", ""))
 			if currentPanel:
-				print(12)
 				panals.append(currentPanel)
 			currentPanel = FormPanel()
 			currentPanel.name =formPanelArg.panel.replace("\n", "")

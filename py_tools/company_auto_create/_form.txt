@@ -1,14 +1,6 @@
--formTitle 积分规则 -tabTitle 积分配置
---panel	会员积分
---item	name	input	积分命名
---item	unit	input	积分单位
---item	icon	image	ICON
---panel	消费积分
---item	deliveryInclude	switch	手机外送运费是否积分
---panel	积分有效期
---item	sceneType	radioBox	全部消费,自定义
---item	validTime	radioBox	永久有效,设置有效期
---item	seperate	seperate	seperate
---panel	积分折现
---item	commutation	radioBox	不开启,开启积分折现
---item	commutationPoint	customInput	等,input,抵扣1元
+-formTitle 打印配置
+--panel	信息
+--item	name	input	配置名称
+--item	subtitle	input	副标题
+--item	delivery	table	配送放,select,code,呼叫顺位,input,amount,等候时间,input,rule
+--item	styles	table	样例图片,image,url,标题,input,name,编码,input,code

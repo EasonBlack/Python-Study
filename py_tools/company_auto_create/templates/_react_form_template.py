@@ -57,7 +57,7 @@ render() {
 							{{ form_customInput_template.render(title=item.title, props=item.props, titles=item.title.split(","))  }}
 						{% endif %}
 						{% if item.type == "table" %}
-							{{ form_table_template.render(title=item.title, props=item.props, titles=item.title.split(","))  }}
+							{{ form_table_template.render(title=item.title,  props=item.props, titles=item.title.split(","), capitalizeProp=item.props[0].capitalize() )  }}
 						{% endif %}
 					{% endfor %}
 					</React.Fragment>

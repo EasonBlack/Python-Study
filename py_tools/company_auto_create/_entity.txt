@@ -1,4 +1,5 @@
-(t_vip_point_product_levels)
+(t_printer_receipt)
 f_id Long
-f_productid Long
-f_levelid Long
+f_printId Long
+f_receiptId Long
+f_config String
