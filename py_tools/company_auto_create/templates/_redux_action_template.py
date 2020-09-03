@@ -16,6 +16,10 @@ export const find{{entityName}}ById = (id) => async dispatch => {
     return response;
 }
 
+export const find{{entityName}}New = ()  => {
+    return {type: "{{reduxName}}_FETCH_NEW" }
+}
+
 export const save{{entityName}} = (obj) => async dispatch => {
     let response =  await axios.post(`${ApiUrl}/api/{{routeName}}`, obj)
     return response;

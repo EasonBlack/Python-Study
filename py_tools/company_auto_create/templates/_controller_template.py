@@ -18,6 +18,12 @@ class {{entityName}}Controller @Inject()(cacheApi: SyncCacheApi, {{entityName2}}
     {{entityName2}}Service.search{{entityName}}(hqId).map(result => dataResult(Json.toJson(result)))
   }
 
+  def search{{entityName}} = Action.async { request =>
+    val hqId = request.authToken.body.hqId;
+    val searchPage = WebUtils.getSearchPage(request)
+    {{entityName2}}Service.search{{entityName}}(hqId, searchPage).map(result => dataResult(Json.toJson(result)))
+  }
+
   def find{{entityName}}ById(id: Long) = Action.async {request =>
     val hqId = request.authToken.body.hqId
     {{entityName2}}Service.find{{entityName}}ById(hqId, id).map { result =>

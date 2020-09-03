@@ -1,10 +1,10 @@
 from jinja2 import Template
 
 form_color_template =  Template('''
-<Form.Item required label="{{title}}" 
+<Form.Item  label="{{title}}" 
 	className={'align-items-center d-flex '}>
 	<SketchPickerWrapper color={ d.{{props[0]}} || null} 
-		selectColor = {(v) => onBasicChange("{{props[0]}}", v)} 
+		selectColor = {this.onBasicChange.bind(this, "{{props[0]}}")} 
 		hasHash={true} 
 	/>
 </Form.Item>

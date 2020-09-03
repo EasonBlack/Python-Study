@@ -25,3 +25,5 @@ f_open Boolean
 --item	useSceneList	checkBoxGroup	useSceneList
 --item	coupons	table	卡券,select,couponId,数量,input,amount,发券规则,input,rule
 --item	discountRange	radioBoxGroup	整单和单品,整单,单品
+--item	branch	branch	branch
+--item	startTime,endTime	dateRange	起止时间

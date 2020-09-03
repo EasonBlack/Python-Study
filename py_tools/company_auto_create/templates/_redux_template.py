@@ -27,6 +27,12 @@ export default function reducer(state = {
 					detail: value
 			})
     }
+    case "{{reduxName}}_FETCH_NEW": {
+			let value = {};
+			return Object.assign({}, state, {
+					detail: value
+			})
+    }
     default: 
       return state
   }

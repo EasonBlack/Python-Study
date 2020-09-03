@@ -1,7 +1,7 @@
 from jinja2 import Template
 
 form_customInput_template =  Template('''
-<Form.Item required className={' align-items-center  d-flex '}>
+<Form.Item  className={' align-items-center  d-flex '}>
 	{% for title in titles -%}
 		{% if title != "input" -%}
 			<span className='mr-10'>{{title}}</span> 

@@ -59,6 +59,9 @@ render() {
 						{% if item.type == "table" %}
 							{{ form_table_template.render(title=item.title,  props=item.props, titles=item.title.split(","), capitalizeProp=item.props[0].capitalize() )  }}
 						{% endif %}
+						{% if item.type == "branch" %}
+							{{ form_branch_template.render()  }}
+						{% endif %}
 					{% endfor %}
 					</React.Fragment>
 				</FormPanelWapper>

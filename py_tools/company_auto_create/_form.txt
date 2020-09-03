@@ -1,6 +1,18 @@
--formTitle 打印配置
+-formTitle 活动配置
 --panel	信息
---item	name	input	配置名称
---item	subtitle	input	副标题
---item	delivery	table	配送放,select,code,呼叫顺位,input,amount,等候时间,input,rule
---item	styles	table	样例图片,image,url,标题,input,name,编码,input,code
+--item	name	input	活动名称
+--item	subTitle	input	副标题
+--item	usageDesc	textarea	使用说明
+--item	detailIcon	image	ICON
+--item	previewIcon	image	ICON
+--item	seperate	seperate	seperate
+--panel	时间
+--item	startTime,endTime	dateRange	起止时间
+--item	seperate	seperate	seperate
+--panel	规则
+--item	seperate	seperate	seperate
+--panel	奖励
+--item	convertVal	input	消费订单满
+--item	convertAmount	input	订单金额满
+--item	coupons	table	优惠券,select,couponTemplateNumber,数量,input,count
+--item	branch	branch	branch

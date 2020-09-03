@@ -17,6 +17,7 @@ from templates.form_components._react_form_customInput_template import *
 from templates.form_components._react_form_seperate_template import *
 from templates.form_components._react_form_checkBoxGroup_template import *
 from templates.form_components._react_form_table_template import *
+from templates.form_components._react_form_branch_template import *
 
 formMainParse = argparse.ArgumentParser()
 formMainParse.add_argument("-formTitle")
@@ -94,6 +95,7 @@ reactFromTamplateResult = react_form_template.render(
 	form_seperate_template = form_seperate_template,
 	form_checkBoxGroup_template = form_checkBoxGroup_template,
 	form_table_template = form_table_template,
+	form_branch_template = form_branch_template,
 	panals = panals
 )
 

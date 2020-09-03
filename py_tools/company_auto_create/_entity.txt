@@ -1,5 +1,6 @@
-(t_printer_receipt)
+(t_mr_consume_count_tp_coupon)
 f_id Long
-f_printId Long
-f_receiptId Long
-f_config String
+f_tp_number String
+f_coupon_template_number String
+f_count Int
+f_create_time Timestamp
