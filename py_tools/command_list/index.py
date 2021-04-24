@@ -37,6 +37,8 @@ while flag:
 
 	elif choice.find("writesth") != -1 :
 		command = command.format(value)
+
+	
 	if os.system(command) == 0:
 		print("Success")
 	else:
