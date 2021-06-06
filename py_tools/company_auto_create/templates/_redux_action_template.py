@@ -30,5 +30,17 @@ export const update{{entityName}} = (obj) => async dispatch => {
 }
 
 
+import { search{{entityName}},  find{{entityName}}ById, save{{entityName}}, update{{entityName}} } from '../../../redux/actions/xxxxx'
+
+var mapDispatchToProps = function (dispatch) {
+  return {
+    actions: bindActionCreators({
+        onStateChange, onStateNestChange,
+        search{{entityName}},  find{{entityName}}ById, save{{entityName}}, update{{entityName}}
+    }, dispatch)
+  };
+}
+
+
 
 ''')

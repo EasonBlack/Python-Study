@@ -7,6 +7,7 @@ trait {{entityName}}Service {
   def search{{entityName}}(hqId: Long,  searchPage: SearchPage ): Future[SearchResult[{{entityName}}]] 
   def find{{entityName}}ById(hqId: Long, id: Long) : Future[{{entityName}}]
   def save{{entityName}}(m: {{entityName}}): Future[Long]
+  def saveAndUpdate{{entityName}}(m: {{entityName}}): Future[Unit]
   def update{{entityName}}(m: {{entityName}}): Future[Unit]
 }
 
@@ -37,6 +38,15 @@ class {{entityName}}ServiceImpl @Inject()(dbConfigProvider: DatabaseConfigProvid
 
   override def save{{entityName}}(m: {{entityName}}) = {
     runDBAction((_{{tableClassNames}} returning _{{tableClassNames}}.map(_.id)) += m)
+  }
+
+  override def saveAndUpdate{{entityName}}(m: {{entityName}}) = {
+    (m.id match {
+      case 0L => runDBAction((_{{tableClassNames}} returning _{{tableClassNames}}.map(_.id)) += m)
+      case _ => runDBAction(_{{tableClassNames}}.filter(_.id === m.id).update(m))
+    }).map { _
+      => Unit
+    }
   }
 
   override def update{{entityName}}(m: {{entityName}}) = {

@@ -40,6 +40,15 @@ class {{entityName}}Controller @Inject()(cacheApi: SyncCacheApi, {{entityName2}}
     )
   }
 
+  def saveAndUpdate{{entityName}} = Action.async(parse.json) { request =>
+    request.body.validate[{{entityName}}].fold(
+      errors => Future.successful(jsonInvalidResult(request, errors)),
+      m => {
+        {{entityName2}}Service.saveAndUpdate{{entityName}}(m).map(_ => emptyResult)
+      }
+    )
+  }
+
   def update{{entityName}} = Action.async(parse.json) { request =>
     request.body.validate[{{entityName}}].fold(
       errors => Future.successful(jsonInvalidResult(request, errors)),
