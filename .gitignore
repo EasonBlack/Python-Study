@@ -1,3 +1,7 @@
 build
 __pycache__
 py_tools/auto_click
+py_tkinter/basic/build
+py_tkinter/basic/dist
+*.bak
+job

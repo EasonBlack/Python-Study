@@ -1,11 +1,14 @@
-import sys
-if sys.version_info < (3, 0):
-    # Python 2
-    import Tkinter as tk
-else:
-    # Python 3
-    import tkinter as tk
+import tkinter as tk
 root = tk.Tk()
-root.title("Sandwich")
+
+root.title("Hello World")
+root.geometry('600x400+50+50')
 tk.Button(root, text="Make me a Sandwich").pack()
-tk.mainloop()
+
+text_entry = tk.Text(root)
+text_entry.pack()
+
+tk.Checkbutton(root, text = 'Username').pack()
+
+
+root.mainloop()
